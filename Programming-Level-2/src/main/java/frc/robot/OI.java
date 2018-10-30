@@ -16,11 +16,20 @@ public class OI {
     public final Joystick operatorStick;
     private Button driveTrigger;
     private Button driveSideButton;
+
+    private Button operatorTrigger;//Eject
+    private Button operatorSideButton;//Suck
+
     public OI() {
         this.driveStick = new Joystick(0);
         this.operatorStick = new Joystick(1);
         this.driveTrigger = new JoystickButton(driveStick, 1);
         this.driveSideButton = new JoystickButton(driveStick, 2);
+
+        this.operatorTrigger = new JoystickButton(operatorStick, 1);
+        this.operatorTrigger.whileHeld(new HandEject());
+        this.operatorSideButton = new JoystickButton(operatorStick, 2);
+        this.operatorSideButton.whileHeld(new HandSuck());
     }
     // Drive Stick
     public double getDriveX() {

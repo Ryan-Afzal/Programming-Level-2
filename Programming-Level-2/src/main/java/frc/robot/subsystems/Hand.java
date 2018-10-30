@@ -25,11 +25,11 @@ public class Hand extends Subsystem {
   }
 
   public void startHandEjection() {
-
+    this.startHandDirection(1);
   }
 
   public void startHandSuction() {
-
+    this.startHandDirection(-1);
   }
 
   private void startHandDirection(int direction) {

@@ -9,14 +9,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class UseHand extends Command {
-  public UseHand() {
+public class HandEject extends Command {
+  public HandEject() {
     requires(hand);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    hand.startHandEjection();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -33,24 +34,13 @@ public class UseHand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    hand.stopHand();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-
-  }
-
-  public void startEject() {
-    hand.startHandEjection();
-  }
-
-  public void startSuck() {
-    hand.startHandSuction();
-  }
-
-  public void stopHand() {
     hand.stopHand();
   }
 }
