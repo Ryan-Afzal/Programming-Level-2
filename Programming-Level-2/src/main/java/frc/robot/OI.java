@@ -7,6 +7,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.command.*;
+import edu.wpi.first.wpilibj.buttons.*;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -30,14 +34,17 @@ public class OI {
         this.operatorTrigger.whileHeld(new HandEject());
         this.operatorSideButton = new JoystickButton(operatorStick, 2);
         this.operatorSideButton.whileHeld(new HandSuck());
-    }
-    // Drive Stick
+      }
+
+      // Drive Stick
     public double getDriveX() {
         return this.driveStick.getX();
     }
+
     public double getDriveY() {
         return this.driveStick.getY();
     }
+
     public double getDriveZ() {
         return this.driveStick.getZ();
     }
