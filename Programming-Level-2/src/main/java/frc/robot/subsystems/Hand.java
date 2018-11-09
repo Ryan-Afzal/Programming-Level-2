@@ -8,6 +8,11 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import frc.robot.subsystems.*;
+import frc.robot.*;
+import frc.robot.commands.*;
 
 /**
  * Add your docs here.
@@ -15,7 +20,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Hand extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static final double MOTOR_SPEED = 0.25;
+  public static final double MOTOR_SPEED = 0.50;
 
   public WPI_TalonSRX r1, l1;
   
@@ -33,7 +38,7 @@ public class Hand extends Subsystem {
   }
 
   private void startHandDirection(int direction) {
-    this.r1.set(direction * MOTOR_SPEED);
+    this.r1.set(-direction * MOTOR_SPEED);
     this.l1.set(direction * MOTOR_SPEED);
   }
 
@@ -44,6 +49,6 @@ public class Hand extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new UseHand());
+    //setDefaultCommand(new UseHand());
   }
 }

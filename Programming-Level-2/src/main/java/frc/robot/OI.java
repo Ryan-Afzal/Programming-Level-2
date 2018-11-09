@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
 import edu.wpi.first.wpilibj.buttons.*;
 
+import frc.robot.subsystems.*;
+import frc.robot.*;
+import frc.robot.commands.*;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.

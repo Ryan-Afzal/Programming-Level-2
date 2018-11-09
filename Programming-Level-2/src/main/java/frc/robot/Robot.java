@@ -29,6 +29,8 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
 
   Command m_autonomousCommand;
+  Command handEject = new HandEject();
+  Command handSuck = new HandSuck();
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
@@ -116,8 +118,8 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    HandEject.start();
-    HandSuck.start();
+    //handEject.start();
+    //handSuck.start();
   }
 
   /**

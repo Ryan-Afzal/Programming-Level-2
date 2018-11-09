@@ -8,16 +8,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.subsystems.*;
+import frc.robot.*;
+import frc.robot.commands.*;
 
 public class HandEject extends Command {
   public HandEject() {
-    requires(hand);
+    requires(Robot.hand);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    hand.startHandEjection();
+    Robot.hand.startHandEjection();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -34,13 +37,13 @@ public class HandEject extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    hand.stopHand();
+    Robot.hand.stopHand();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    hand.stopHand();
+    Robot.hand.stopHand();
   }
 }
