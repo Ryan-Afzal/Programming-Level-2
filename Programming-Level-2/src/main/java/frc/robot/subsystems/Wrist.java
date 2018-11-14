@@ -23,13 +23,17 @@ public class Wrist extends Subsystem {
 
   public Wrist() {
     this.w = new WPI_TalonSRX(RobotMap.wristMotor);
-    
-    
+  }
+
+  public void setSpeed(double speed) {
+    this.w.set(speed);
+  }
+
+  public void stop() {
+    this.w.set(0);
   }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
   }
 }

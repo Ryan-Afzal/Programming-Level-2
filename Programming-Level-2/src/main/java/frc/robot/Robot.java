@@ -31,6 +31,7 @@ public class Robot extends TimedRobot {
   Command m_autonomousCommand;
   Command handEject = new HandEject();
   Command handSuck = new HandSuck();
+  Command useWrist = new UseWrist();
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
@@ -40,9 +41,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.addObject("Eject", new HandEject());
-    m_chooser.addObject("Suck", new HandSuck());
-    m_chooser.addObject("Wrist", new UseWrist());
+    m_chooser.addObject("Eject", this.handEject);
+    m_chooser.addObject("Suck", this.handSuck);
+    m_chooser.addObject("Wrist", this.useWrist);
     SmartDashboard.putData("Auto mode", m_chooser);
   }
 
@@ -118,8 +119,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    //handEject.start();
-    //handSuck.start();
+    this.useWrist.start();
   }
 
   /**
