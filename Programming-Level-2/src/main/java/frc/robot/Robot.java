@@ -23,12 +23,14 @@ import frc.robot.subsystems.*;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static DriveTrain driveTrain = new DriveTrain();
   public static Hand hand = new Hand();
   public static Wrist wrist = new Wrist();
   
   public static OI m_oi;
 
   Command m_autonomousCommand;
+  Command drive = new Drive();
   Command handEject = new HandEject();
   Command handSuck = new HandSuck();
   Command useWrist = new UseWrist();
@@ -41,9 +43,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.addObject("Eject", this.handEject);
-    m_chooser.addObject("Suck", this.handSuck);
-    m_chooser.addObject("Wrist", this.useWrist);
     SmartDashboard.putData("Auto mode", m_chooser);
   }
 
@@ -119,6 +118,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
+    this.drive.start();
     this.useWrist.start();
   }
 
