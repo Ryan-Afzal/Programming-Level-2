@@ -20,13 +20,15 @@ import frc.robot.commands.*;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  public final Joystick driveStick;
+    public final Joystick driveStick;
     public final Joystick operatorStick;
     private Button driveTrigger;
     private Button driveSideButton;
 
     private Button operatorTrigger;//Eject
     private Button operatorSideButton;//Suck
+    private Button operatorHandClose;//Close Hand
+    private Button operatorHandOpen;//Open Hand
 
     public OI() {
         this.driveStick = new Joystick(0);
@@ -38,6 +40,11 @@ public class OI {
         this.operatorTrigger.whileHeld(new HandEject());
         this.operatorSideButton = new JoystickButton(operatorStick, 2);
         this.operatorSideButton.whileHeld(new HandSuck());
+
+        this.operatorHandClose = new JoystickButton(operatorStick, 11);
+        this.operatorHandClose.whileHeld(new HandClose());
+        this.operatorHandOpen = new JoystickButton(operatorStick, 12);
+        this.operatorHandOpen.whileHeld(new HandOpen());
       }
 
       // Drive Stick

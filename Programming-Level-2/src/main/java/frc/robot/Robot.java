@@ -34,6 +34,8 @@ public class Robot extends TimedRobot {
   Command handEject = new HandEject();
   Command handSuck = new HandSuck();
   Command useWrist = new UseWrist();
+  Command handClose = new HandClose();
+  Command handOpen = new HandOpen();
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
@@ -117,7 +119,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-
+    
     this.drive.start();
     this.useWrist.start();
   }

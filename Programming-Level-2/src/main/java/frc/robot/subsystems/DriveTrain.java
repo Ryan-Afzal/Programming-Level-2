@@ -24,6 +24,7 @@ public class DriveTrain extends Subsystem {
   public WPI_TalonSRX r0, r1, l0, l1;
 
   public DriveTrain() {
+
     this.r0 = new WPI_TalonSRX(RobotMap.rightDriveMotor1);
     this.r1 = new WPI_TalonSRX(RobotMap.rightDriveMotor2);
     this.l0 = new WPI_TalonSRX(RobotMap.leftDriveMotor1);
@@ -41,7 +42,7 @@ public class DriveTrain extends Subsystem {
     this.drive = new DifferentialDrive(l, r);
   }
   public void arcade(double moveValue, double rotateValue) {
-    drive.arcadeDrive(moveValue, -rotateValue);
+    drive.arcadeDrive(moveValue, -rotateValue * 0.75);
   }
 
   public void arcadeNoConstants(double moveValue, double rotateValue) {
