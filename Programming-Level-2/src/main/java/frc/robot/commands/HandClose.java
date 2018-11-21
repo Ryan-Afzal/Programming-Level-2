@@ -20,16 +20,12 @@ public class HandClose extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.hand.closeHand();
-    System.out.println("initializing!");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     Robot.hand.closeHand();
-    
-    System.out.println("executing!");
   }
 
   // Make this return true when this Command no longer needs to run execute()

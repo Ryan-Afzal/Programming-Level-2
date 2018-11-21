@@ -31,8 +31,8 @@ public class Robot extends TimedRobot {
 
   Command m_autonomousCommand;
   Command drive = new Drive();
-  Command handEject = new HandEject();
-  Command handSuck = new HandSuck();
+  //Command handEject = new HandEject();
+  //Command handSuck = new HandSuck();
   Command useWrist = new UseWrist();
   Command handClose = new HandClose();
   Command handOpen = new HandOpen();
@@ -122,6 +122,8 @@ public class Robot extends TimedRobot {
     
     this.drive.start();
     this.useWrist.start();
+    this.handClose.start();
+    this.handOpen.start();
   }
 
   /**

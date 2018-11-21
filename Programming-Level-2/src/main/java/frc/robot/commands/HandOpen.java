@@ -20,7 +20,6 @@ public class HandOpen extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.hand.openHand();
   }
 
   // Called repeatedly when this Command is scheduled to run

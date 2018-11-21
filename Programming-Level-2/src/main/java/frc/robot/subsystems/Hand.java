@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.subsystems.*;
@@ -21,15 +21,18 @@ import frc.robot.commands.*;
 public class Hand extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static final double MOTOR_SPEED = 0.75;
+  public static final double MOTOR_SPEED = 1.5;
 
   public WPI_TalonSRX r1, l1;
   public DoubleSolenoid s;
+  private Compressor compressor;
   
   public Hand() {
     this.r1 = new WPI_TalonSRX(RobotMap.rightPickupMotor);
     this.l1 = new WPI_TalonSRX(RobotMap.leftPickupMotor);
-    this.s = new DoubleSolenoid(
+    this.compressor = new Compressor(RobotMap.pcmID);
+    this.compressor.setClosedLoopControl(true);
+    this.s = new DoubleSolenoid(RobotMap.pcmID,
       RobotMap.handRotatorSolenoidChannelIn, 
       RobotMap.handRotatorSolenoidChannelOut);
   }

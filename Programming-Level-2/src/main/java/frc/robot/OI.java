@@ -42,9 +42,9 @@ public class OI {
         this.operatorSideButton.whileHeld(new HandSuck());
 
         this.operatorHandClose = new JoystickButton(operatorStick, 11);
-        this.operatorHandClose.whileHeld(new HandClose());
+        this.operatorHandClose.whenPressed(new HandClose());
         this.operatorHandOpen = new JoystickButton(operatorStick, 12);
-        this.operatorHandOpen.whileHeld(new HandOpen());
+        this.operatorHandOpen.whenPressed(new HandOpen());
       }
 
       // Drive Stick
