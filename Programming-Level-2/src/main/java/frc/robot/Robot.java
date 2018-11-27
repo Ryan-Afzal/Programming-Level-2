@@ -26,16 +26,19 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain = new DriveTrain();
   public static Hand hand = new Hand();
   public static Wrist wrist = new Wrist();
+  public static Arm arm = new Arm();
   
   public static OI m_oi;
 
   Command m_autonomousCommand;
   Command drive = new Drive();
-  //Command handEject = new HandEject();
-  //Command handSuck = new HandSuck();
+  Command handEject = new HandEject();
+  Command handSuck = new HandSuck();
   Command useWrist = new UseWrist();
   Command handClose = new HandClose();
   Command handOpen = new HandOpen();
+  Command armUp = new ArmUp();
+  Command armDown = new ArmDown();
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**

@@ -24,6 +24,8 @@ public class OI {
     public final Joystick operatorStick;
     private Button driveTrigger;
     private Button driveSideButton;
+    private Button driveArmUp;
+    private Button driveArmDown;
 
     private Button operatorTrigger;//Eject
     private Button operatorSideButton;//Suck
@@ -35,6 +37,11 @@ public class OI {
         this.operatorStick = new Joystick(1);
         this.driveTrigger = new JoystickButton(driveStick, 1);
         this.driveSideButton = new JoystickButton(driveStick, 2);
+
+        this.driveArmUp = new JoystickButton(driveStick, 11);
+        this.driveArmUp.whenPressed(new ArmUp());
+        this.driveArmDown = new JoystickButton(driveStick, 12);
+        this.driveArmDown.whenPressed(new ArmDown());
 
         this.operatorTrigger = new JoystickButton(operatorStick, 1);
         this.operatorTrigger.whileHeld(new HandEject());
