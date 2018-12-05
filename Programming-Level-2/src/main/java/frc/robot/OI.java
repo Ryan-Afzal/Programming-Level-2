@@ -39,9 +39,9 @@ public class OI {
         this.driveSideButton = new JoystickButton(driveStick, 2);
 
         this.driveArmUp = new JoystickButton(driveStick, 11);
-        this.driveArmUp.whenPressed(new ArmUp());
+        //this.driveArmUp.whenPressed(new ArmUp());
         this.driveArmDown = new JoystickButton(driveStick, 12);
-        this.driveArmDown.whenPressed(new ArmDown());
+        //this.driveArmDown.whenPressed(new ArmDown());
 
         this.operatorTrigger = new JoystickButton(operatorStick, 1);
         this.operatorTrigger.whileHeld(new HandEject());

@@ -9,21 +9,32 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.command.*;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
 
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends PIDSubsystem {
 
   private DifferentialDrive drive;
   private SpeedControllerGroup r;
   private SpeedControllerGroup l;
 
-  public WPI_TalonSRX r0, r1, l0, l1;
+  private WPI_TalonSRX r0, r1, l0, l1;
+
+  private ADXRS450_Gyro gyro;
+  private PIDController pid;
+
+  public static final double KP = 0.10;
+  public static final double KI = 0.00;
+  public static final double KD = 0.00;
 
   public DriveTrain() {
+    super(KP, KI, KD);
+    this.gyro = new ADXRS450_Gyro();
+    this.gyro.calibrate();
+
+    this.enable();
 
     this.r0 = new WPI_TalonSRX(RobotMap.rightDriveMotor1);
     this.r1 = new WPI_TalonSRX(RobotMap.rightDriveMotor2);
@@ -41,6 +52,26 @@ public class DriveTrain extends Subsystem {
 
     this.drive = new DifferentialDrive(l, r);
   }
+
+  public void turn(double setpoint) {
+    this.setSetpoint(setpoint);
+    this.enable();
+  }
+
+  @Override
+  protected double returnPIDInput() {
+    return this.getAngle();
+  }
+
+  public double getAngle() {
+    return this.gyro.getAngle();
+  }
+
+  @Override
+  protected void usePIDOutput(double output) {
+    System.out.println(output);//this.arcade(output, -output);
+  }
+
   public void arcade(double moveValue, double rotateValue) {
     drive.arcadeDrive(moveValue, -rotateValue * 0.75);
   }

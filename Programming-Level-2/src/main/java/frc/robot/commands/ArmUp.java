@@ -17,10 +17,11 @@ public class ArmUp extends Command {
     requires(Robot.arm);
   }
 
-  // Called just before this Command runs the first time
+  //Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.arm.startMotor(1);
+    Robot.arm.setSetpoint(Math.toRadians(84));
+    Robot.arm.startMotor(-1);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -31,7 +32,7 @@ public class ArmUp extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-      return Robot.arm.getArmAngle() > Math.toRadians(84);
+    return Robot.arm.getArmAngle() > Math.toRadians(84);
   }
 
   // Called once after isFinished returns true
@@ -44,5 +45,6 @@ public class ArmUp extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.arm.stopMotor();
   }
 }

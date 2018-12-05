@@ -20,6 +20,10 @@ public class Arm extends PIDSubsystem {
 
   public static final double SPEED = 0.5;
 
+  public static final double KP = 0.50;
+  public static final double KI = 0.00;
+  public static final double KD = 0.00;
+
   private int direction = 1;
 
   private double offset = 135. / 131;
@@ -27,7 +31,7 @@ public class Arm extends PIDSubsystem {
   public static final double startingAngle = -50;
 
   public Arm() {
-    super("ArmPID", 1.0, 1.0, 1.0);
+    super("ArmPID", KP, KI, KD);
     this.setAbsoluteTolerance(0.2);
     this.getPIDController().setContinuous(false);
 
@@ -40,18 +44,30 @@ public class Arm extends PIDSubsystem {
     //servoStart = servoAngle();
   }
 
+  @Override
+  public void enable() {
+    System.out.println("enabled!");
+    super.enable();
+  }
+
+  @Override
+  public void disable() {
+    System.out.println("disabled!");
+    super.disable();
+  }
+
   public double getEncoderPosition() {
     return this.arm.getSelectedSensorPosition(0);
   }
 
   @Override
   protected double returnPIDInput() {
-    return this.arm.getSelectedSensorPosition(0);
+    return this.getArmAngle();
   }
 
   @Override
   protected void usePIDOutput(double output) {
-    this.arm.pidWrite(output);
+    this.arm.pidWrite(output * direction);
   }
 
   public void startMotor(int direction) {
@@ -64,7 +80,7 @@ public class Arm extends PIDSubsystem {
   }
 
   public double getArmAngle() {
-    return Math.toRadians(getEncoderPosition() * gearReduction * offset / 4096 * 360 + startingAngle);
+    return Math.toRadians(this.getEncoderPosition() * gearReduction * offset / 4096 * 360 + startingAngle);
   }
 
   @Override

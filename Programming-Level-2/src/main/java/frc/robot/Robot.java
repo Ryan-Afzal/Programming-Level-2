@@ -127,6 +127,7 @@ public class Robot extends TimedRobot {
     this.useWrist.start();
     this.handClose.start();
     this.handOpen.start();
+    this.driveTrain.turn(90);
   }
 
   /**
@@ -135,6 +136,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    System.out.println(Robot.driveTrain.getAngle());
   }
 
   /**
