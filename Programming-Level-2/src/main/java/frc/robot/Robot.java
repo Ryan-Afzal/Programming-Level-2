@@ -70,6 +70,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    Robot.driveTrain.disable();
   }
 
   @Override
@@ -123,11 +124,12 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     
-    this.drive.start();
+    //this.drive.start();
     this.useWrist.start();
     this.handClose.start();
     this.handOpen.start();
-    this.driveTrain.turn(90);
+    Robot.driveTrain.turn(90);
+    Robot.driveTrain.enable();
   }
 
   /**
@@ -136,7 +138,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    System.out.println(Robot.driveTrain.getAngle());
+    System.out.println("Angle: " + Robot.driveTrain.getAngle());
   }
 
   /**

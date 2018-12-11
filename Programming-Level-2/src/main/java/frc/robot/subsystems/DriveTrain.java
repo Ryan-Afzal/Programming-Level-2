@@ -23,10 +23,9 @@ public class DriveTrain extends PIDSubsystem {
   private WPI_TalonSRX r0, r1, l0, l1;
 
   private ADXRS450_Gyro gyro;
-  private PIDController pid;
 
-  public static final double KP = 0.10;
-  public static final double KI = 0.00;
+  public static final double KP = 0.03;
+  public static final double KI = 0.001;
   public static final double KD = 0.00;
 
   public DriveTrain() {
@@ -34,7 +33,8 @@ public class DriveTrain extends PIDSubsystem {
     this.gyro = new ADXRS450_Gyro();
     this.gyro.calibrate();
 
-    this.enable();
+    this.setAbsoluteTolerance(0.2);
+    this.getPIDController().setContinuous(false);
 
     this.r0 = new WPI_TalonSRX(RobotMap.rightDriveMotor1);
     this.r1 = new WPI_TalonSRX(RobotMap.rightDriveMotor2);
@@ -53,9 +53,8 @@ public class DriveTrain extends PIDSubsystem {
     this.drive = new DifferentialDrive(l, r);
   }
 
-  public void turn(double setpoint) {
-    this.setSetpoint(setpoint);
-    this.enable();
+  public void turn(double delta) {
+    this.setSetpoint(this.getSetpoint() + delta);
   }
 
   @Override
@@ -69,7 +68,14 @@ public class DriveTrain extends PIDSubsystem {
 
   @Override
   protected void usePIDOutput(double output) {
-    System.out.println(output);//this.arcade(output, -output);
+    this.arcade(0, output);
+    //this.testMotors(1);
+    System.out.println("PID: " + output);
+  }
+
+  private void testMotors(double input) {
+    r.set(input);
+    l.set(-input);
   }
 
   public void arcade(double moveValue, double rotateValue) {
